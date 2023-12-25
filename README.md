@@ -1,6 +1,6 @@
 # use the scrapy venv
 ```
-python3 -m venv ~/venvs/scrapy-test
+python3 -m venv ~/tools/venvs/scrapy-test
 
 source ~/tools/venvs/scrapy-test/bin/activate
 pip install Scrapy
