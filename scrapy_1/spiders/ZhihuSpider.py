@@ -3,7 +3,6 @@ import os
 import json
 import requests
 from scrapy.crawler import CrawlerProcess
-from scrapy.http import Request
 from scrapy_1.constants import ZHIHU_HEADER, ZHIMG_HEADER
 
 FOLDER = '/Users/xingnliu/tmp1/zhuanlan/'
@@ -97,15 +96,15 @@ class ZhihuSpider(scrapy.Spider):
             yield response.follow(next_page, callback=self.parse)
 
 
-process = CrawlerProcess(settings={
-    # "FEEDS": {
-    #     "items.json": {"format": "json"},
-    # },
-    "DOWNLOAD_DELAY": 10,
-    "COOKIES_ENABLED": False,
-    "DEPTH_PRIORITY": 2,
-})
+# process = CrawlerProcess(settings={
+#     # "FEEDS": {
+#     #     "items.json": {"format": "json"},
+#     # },
+#     "DOWNLOAD_DELAY": 10,
+#     "COOKIES_ENABLED": False,
+#     "DEPTH_PRIORITY": 2,
+# })
 
-process.crawl(ZhihuSpider)
-process.start()  # the script will block here until the crawling is finished
-process.join()
+# process.crawl(ZhihuSpider)
+# process.start()  # the script will block here until the crawling is finished
+# process.join()

@@ -13,10 +13,28 @@ ZHIHU_HEADER = {
     'accept-language': 'en-US,en;q=0.9',
     'cookie': '########CHANGE_THE_COOKIE######',
 }
+LIANJIA_HEADER = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7',
+    'Connection': 'keep-alive',
+    'Host': 'sh.lianjia.com',
+    'Referer': 'https://sh.lianjia.com/ershoufang/minhang/',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-User': '?1',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"macOS"',
+    'cookie': '########CHANGE_THE_COOKIE######',
+}
 ZHIMG_HEADER = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
     'accept': '*/*',
     'accept-encoding': 'gzip',
     'accept-language': 'en-US,en;q=0.9',
-    'Connection':'keep-alive',
+    'Connection': 'keep-alive',
 }
