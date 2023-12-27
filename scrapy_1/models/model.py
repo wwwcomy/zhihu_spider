@@ -2,16 +2,17 @@
 from datetime import datetime
 
 class CrawlSummary:
-    def __init__(self, id, name, start_time, end_time, data_count):
+    def __init__(self, id, name, job_date, start_time, end_time, data_count, 
+                 new_data_count, price_higher_count, price_lower_count):
         self.id = id
         self.name = name
+        self.job_date = job_date
         self.start_time = start_time
         self.end_time = end_time
         self.data_count = data_count
-
-    def __str__(self):
-        return f'CrawlSummary: {self.name}, {self.start_time}, {self.end_time}, {self.data_count}'
-
+        self.new_data_count = new_data_count
+        self.price_higher_count = price_higher_count
+        self.price_lower_count = price_lower_count
 
 class HouseInfo:
     def __init__(self, id, house_id, district, sub_district, title, position_id, position_info,
@@ -33,7 +34,7 @@ class HouseInfo:
         self.house_year = house_year
         self.total_price = total_price
         self.unit_price = unit_price
-        self.last_update_time = job_time
+        self.last_update_date = job_time
 
     def generate_price_change_history(self, another_house_info, job_time):
         if self.total_price != another_house_info.total_price or self.unit_price != another_house_info.unit_price:
@@ -59,4 +60,4 @@ class HousePriceChangeHistory:
         self.job_time = job_time
 
     def __str__(self):
-        return f'HousePriceChangeHistory: {self.house_id}, {self.total_price}, {self.unit_price}, {self.last_update_time}'
+        return f'HousePriceChangeHistory: {self.house_id}, {self.total_price}, {self.unit_price}, {self.job_time}'
