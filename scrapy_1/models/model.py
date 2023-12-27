@@ -1,5 +1,4 @@
 
-from datetime import datetime
 
 class CrawlSummary:
     def __init__(self, id, name, job_date, start_time, end_time, data_count, 

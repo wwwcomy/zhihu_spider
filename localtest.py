@@ -1,4 +1,3 @@
-import os
 from bs4 import BeautifulSoup
 import re
 from scrapy_1.models.model import CrawlSummary

@@ -1,5 +1,4 @@
 import scrapy
-from scrapy.crawler import CrawlerProcess
 from scrapy_1.constants import LIANJIA_HEADER
 from bs4 import BeautifulSoup
 from scrapy_1.models.model import CrawlSummary
