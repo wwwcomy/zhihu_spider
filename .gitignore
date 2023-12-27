@@ -6,3 +6,6 @@ venv/
 *.pyc
 .idea/*
 *~
+*.db-journal
+*.db
+*.sql
