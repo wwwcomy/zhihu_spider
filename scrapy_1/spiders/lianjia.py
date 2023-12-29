@@ -119,8 +119,10 @@ class LianjiaSpider(scrapy.Spider):
         # if there's existing info, check if there's any price change
         house_change_history = existing_house_info.generate_price_change_history(house_info, self.job_start_date)
         if house_change_history is None:
-            existing_house_info.last_update_date = self.job_start_date
-            house_info_dao.update_last_update_date(existing_house_info)
+            if existing_house_info.last_update_date == self.job_start_date:
+                # already processed, skip
+                return
+            house_info_dao.update_last_update_date(existing_house_info, self.job_start_date)
             return
         if house_change_history.change_type == 'down':
             # price down, update the history
@@ -128,7 +130,8 @@ class LianjiaSpider(scrapy.Spider):
         else:
             # price up, update the history
             self.price_higher_count += 1
-        house_info_dao.update_house_price(house_info)
+        # house_info should have the same id as existing_house_info, so we can use it to update price
+        house_info_dao.update_house_price(house_info, self.job_start_date)
         return
 
 

@@ -1,7 +1,7 @@
 
 
 class CrawlSummary:
-    def __init__(self, id, name, job_date, start_time, end_time, data_count, 
+    def __init__(self, id, name, job_date, start_time, end_time, data_count,
                  new_data_count, price_higher_count, price_lower_count):
         self.id = id
         self.name = name
@@ -12,6 +12,7 @@ class CrawlSummary:
         self.new_data_count = new_data_count
         self.price_higher_count = price_higher_count
         self.price_lower_count = price_lower_count
+
 
 class HouseInfo:
     def __init__(self, id, house_id, district, sub_district, title, position_id, position_info,
@@ -37,7 +38,8 @@ class HouseInfo:
 
     def generate_price_change_history(self, another_house_info, job_time):
         if self.total_price != another_house_info.total_price or self.unit_price != another_house_info.unit_price:
-            return HousePriceChangeHistory(None, self.house_id, self.total_price, self.unit_price, job_time)
+            return HousePriceChangeHistory(None, self.house_id, self.total_price, self.unit_price, 
+                                           another_house_info.total_price, another_house_info.unit_price, job_time)
         else:
             return None
 
@@ -54,7 +56,7 @@ class HousePriceChangeHistory:
         self.original_unit_price = original_unit_price
         self.total_price = total_price
         self.unit_price = unit_price
-        self.change_type = 'down' if self.original_unit_price>self.unit_price else 'up'
+        self.change_type = 'down' if self.original_unit_price > self.unit_price else 'up'
         self.change_amount = self.original_unit_price - self.unit_price
         self.job_time = job_time
 

@@ -81,19 +81,19 @@ class SqliteHouseInfoDao:
         conn.commit()
         conn.close()
 
-    def update_house_price(self, house_info):
+    def update_house_price(self, house_info, last_update_date):
         conn = self.get_conn()
         c = conn.cursor()
         c.execute('''UPDATE house_info SET total_price = ?, unit_price = ?, last_update_date = ? WHERE house_id = ?''',
-                  (house_info.total_price, house_info.unit_price, house_info.last_update_date, house_info.house_id))
+                  (house_info.total_price, house_info.unit_price, last_update_date, house_info.house_id))
         conn.commit()
         conn.close()
 
-    def update_last_update_date(self, house_info):
+    def update_last_update_date(self, house_info, last_update_date):
         conn = self.get_conn()
         c = conn.cursor()
         c.execute('''UPDATE house_info SET last_update_date = ? WHERE house_id = ?''',
-                  (house_info.last_update_date, house_info.house_id))
+                  (last_update_date, house_info.house_id))
         conn.commit()
         conn.close()
 
