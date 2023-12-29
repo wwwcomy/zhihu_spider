@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import re
-from scrapy_1.models.model import CrawlSummary
+from scrapy_1.models.model import CrawlSummary, HouseInfo
 from scrapy_1.dao.sqlite_dao import SqliteCrawSummaryDao
 from datetime import datetime
 
@@ -46,8 +46,19 @@ print(f'total_price: {total_price}')
 print(f'unit_price: {unit_price}')
 
 
-curr_datetime = datetime.now()
-curr_date = curr_datetime.date()
-crawl_summary = CrawlSummary(1, 'test', curr_date, curr_datetime, curr_datetime, 100)
-summary_dao = SqliteCrawSummaryDao()
-summary_dao.save_craw_summary(crawl_summary)
+# curr_datetime = datetime.now()
+# curr_date = curr_datetime.date()
+# crawl_summary = CrawlSummary(1, 'test', curr_date, curr_datetime, curr_datetime, 100)
+# summary_dao = SqliteCrawSummaryDao()
+# summary_dao.save_craw_summary(crawl_summary)
+
+house_info1 = HouseInfo(None, house_id, "district", "sub_district", title, position_id, position_info,
+                                        house_info, house_type, house_area, house_direction, house_decoration,
+                                        house_floor, house_year, "100.1", "10.1", "2020-01-01")
+# print(house_info1)
+house_info2 = HouseInfo(None, house_id, "district", "sub_district", title, position_id, position_info,
+                                        house_info, house_type, house_area, house_direction, house_decoration,
+                                        house_floor, house_year, "110.5", "27.88", "2020-01-01")
+
+history = house_info1.generate_price_change_history(house_info2, "2020-01-01")
+print(history)

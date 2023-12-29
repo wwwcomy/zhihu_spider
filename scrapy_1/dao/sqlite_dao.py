@@ -101,4 +101,28 @@ class SqliteHouseInfoDao:
     def get_conn(self):
         conn = sqlite3.connect('data.db')
         return conn
-    
+
+class HousePriceChangeHistoryDao:
+    def save_house_price_change_history(self, house_price_change_history):
+        conn = self.get_conn()
+        c = conn.cursor()
+        c.execute('''CREATE TABLE IF NOT EXISTS house_price_change_history
+                    (id INTEGER PRIMARY KEY AUTOINCREMENT, house_id text, original_total_price text, original_unit_price text,
+                    new_total_price text, new_unit_price text, change_type text, changed_total_amount text, changed_unit_amount text,
+                    job_time text)
+                ''')
+        c.execute('''INSERT INTO house_price_change_history 
+                  (house_id, original_total_price, original_unit_price, new_total_price, new_unit_price,
+                  change_type, changed_total_amount, changed_unit_amount, job_time) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                  (house_price_change_history.house_id, house_price_change_history.original_total_price,
+                   house_price_change_history.original_unit_price, house_price_change_history.new_total_price,
+                   house_price_change_history.new_unit_price, house_price_change_history.change_type,
+                   house_price_change_history.changed_total_amount, house_price_change_history.changed_unit_amount,
+                   house_price_change_history.job_time))
+        conn.commit()
+        conn.close()
+
+    def get_conn(self):
+        conn = sqlite3.connect('data.db')
+        return conn

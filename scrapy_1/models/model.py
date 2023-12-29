@@ -1,4 +1,4 @@
-
+from decimal import Decimal
 
 class CrawlSummary:
     def __init__(self, id, name, job_date, start_time, end_time, data_count,
@@ -44,8 +44,7 @@ class HouseInfo:
             return None
 
     def __str__(self):
-        return f'HouseInfo: {self.title}, {self.position_id}, {self.position_info}, {self.house_id}, {self.house_info}, {self.house_type}, {self.house_area}, {self.house_direction}, {self.house_decoration}, {self.house_floor}, {self.house_year}, {self.total_price}, {self.unit_price}'
-
+        return f'HouseInfo: {self.house_id}, {self.total_price}, {self.unit_price}, {self.last_update_date}'
 
 class HousePriceChangeHistory:
     def __init__(self, id, house_id, original_total_price, original_unit_price,
@@ -54,11 +53,15 @@ class HousePriceChangeHistory:
         self.house_id = house_id
         self.original_total_price = original_total_price
         self.original_unit_price = original_unit_price
-        self.total_price = total_price
-        self.unit_price = unit_price
-        self.change_type = 'down' if self.original_unit_price > self.unit_price else 'up'
-        self.change_amount = self.original_unit_price - self.unit_price
+        self.new_total_price = total_price
+        self.new_unit_price = unit_price
+        self.change_type = 'down' if Decimal(self.original_unit_price) > Decimal(self.new_unit_price) else 'up'
+        self.changed_total_amount = Decimal(self.new_total_price) - Decimal(self.original_total_price)
+        self.changed_unit_amount = Decimal(self.new_unit_price) - Decimal(self.original_unit_price)
         self.job_time = job_time
 
     def __str__(self):
-        return f'HousePriceChangeHistory: {self.house_id}, {self.total_price}, {self.unit_price}, {self.job_time}'
+        return f'''HousePriceChangeHistory: {self.house_id}, {self.change_type}, 
+        {self.changed_total_amount}, {self.changed_unit_amount},
+        {self.original_total_price}, {self.original_unit_price}, 
+        {self.new_total_price}, {self.new_unit_price}, {self.job_time}'''
