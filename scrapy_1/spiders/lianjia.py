@@ -3,7 +3,7 @@ from scrapy_1.constants import LIANJIA_HEADER
 from bs4 import BeautifulSoup
 from scrapy_1.models.model import CrawlSummary
 from datetime import datetime
-from scrapy_1.dao.sqlite_dao import SqliteCrawSummaryDao, SqliteHouseInfoDao
+from scrapy_1.dao.sqlite_dao import SqliteCrawSummaryDao, SqliteHouseInfoDao, HousePriceChangeHistoryDao
 from scrapy_1.models.model import HouseInfo
 from scrapy import signals
 import json
@@ -132,6 +132,7 @@ class LianjiaSpider(scrapy.Spider):
             self.price_higher_count += 1
         # house_info should have the same id as existing_house_info, so we can use it to update price
         house_info_dao.update_house_price(house_info, self.job_start_date)
+        HousePriceChangeHistoryDao().save_house_price_change_history(house_change_history)
         return
 
 

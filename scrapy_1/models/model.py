@@ -56,8 +56,8 @@ class HousePriceChangeHistory:
         self.new_total_price = total_price
         self.new_unit_price = unit_price
         self.change_type = 'down' if Decimal(self.original_unit_price) > Decimal(self.new_unit_price) else 'up'
-        self.changed_total_amount = Decimal(self.new_total_price) - Decimal(self.original_total_price)
-        self.changed_unit_amount = Decimal(self.new_unit_price) - Decimal(self.original_unit_price)
+        self.changed_total_amount = str(Decimal(self.new_total_price) - Decimal(self.original_total_price))
+        self.changed_unit_amount = str(Decimal(self.new_unit_price) - Decimal(self.original_unit_price))
         self.job_time = job_time
 
     def __str__(self):
