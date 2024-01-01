@@ -38,7 +38,7 @@ class HouseInfo:
 
     def generate_price_change_history(self, another_house_info, job_time):
         if self.total_price != another_house_info.total_price or self.unit_price != another_house_info.unit_price:
-            return HousePriceChangeHistory(None, self.house_id, self.total_price, self.unit_price, 
+            return HousePriceChangeHistory(None, self.house_id, self.house_area, self.total_price, self.unit_price, 
                                            another_house_info.total_price, another_house_info.unit_price, job_time)
         else:
             return None
@@ -47,10 +47,11 @@ class HouseInfo:
         return f'HouseInfo: {self.house_id}, {self.total_price}, {self.unit_price}, {self.last_update_date}'
 
 class HousePriceChangeHistory:
-    def __init__(self, id, house_id, original_total_price, original_unit_price,
+    def __init__(self, id, house_id, house_area, original_total_price, original_unit_price,
                  total_price, unit_price, job_time):
         self.id = id
         self.house_id = house_id
+        self.house_area = house_area
         self.original_total_price = original_total_price
         self.original_unit_price = original_unit_price
         self.new_total_price = total_price
@@ -62,6 +63,7 @@ class HousePriceChangeHistory:
 
     def __str__(self):
         return f'''HousePriceChangeHistory: {self.house_id}, {self.change_type}, 
+        {self.house_area}
         {self.changed_total_amount}, {self.changed_unit_amount},
         {self.original_total_price}, {self.original_unit_price}, 
         {self.new_total_price}, {self.new_unit_price}, {self.job_time}'''

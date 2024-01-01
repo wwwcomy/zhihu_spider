@@ -107,15 +107,15 @@ class HousePriceChangeHistoryDao:
         conn = self.get_conn()
         c = conn.cursor()
         c.execute('''CREATE TABLE IF NOT EXISTS house_price_change_history
-                    (id INTEGER PRIMARY KEY AUTOINCREMENT, house_id text, original_total_price text, original_unit_price text,
+                    (id INTEGER PRIMARY KEY AUTOINCREMENT, house_id text, house_area text, original_total_price text, original_unit_price text,
                     new_total_price text, new_unit_price text, change_type text, changed_total_amount text, changed_unit_amount text,
                     job_time text)
                 ''')
         c.execute('''INSERT INTO house_price_change_history 
-                  (house_id, original_total_price, original_unit_price, new_total_price, new_unit_price,
+                  (house_id, house_area, original_total_price, original_unit_price, new_total_price, new_unit_price,
                   change_type, changed_total_amount, changed_unit_amount, job_time) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-                  (house_price_change_history.house_id, house_price_change_history.original_total_price,
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                  (house_price_change_history.house_id, house_price_change_history.house_area, house_price_change_history.original_total_price,
                    house_price_change_history.original_unit_price, house_price_change_history.new_total_price,
                    house_price_change_history.new_unit_price, house_price_change_history.change_type,
                    house_price_change_history.changed_total_amount, house_price_change_history.changed_unit_amount,
