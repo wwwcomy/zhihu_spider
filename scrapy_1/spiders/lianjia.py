@@ -96,9 +96,9 @@ class LianjiaSpider(scrapy.Spider):
         house_area = split_house_info[1]
         house_area = re.sub('[^\d\\.]','',house_area)
         house_direction = split_house_info[2]
-        house_decoration = split_house_info[3]
-        house_floor = split_house_info[4]
-        house_year = split_house_info[5]
+        house_decoration = '' if len(split_house_info) <= 3 else split_house_info[3]
+        house_floor = '' if len(split_house_info) <= 4 else split_house_info[4]
+        house_year = '' if len(split_house_info) <= 5 else split_house_info[5]
 
         total_price = soup.select('div.info div.totalPrice span')[0].get_text()
         unit_price_raw = soup.select('div.info div.unitPrice span')[0].get_text()
