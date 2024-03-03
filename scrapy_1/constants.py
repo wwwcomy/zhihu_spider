@@ -29,7 +29,7 @@ LIANJIA_HEADER = {
     'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
     'sec-ch-ua-mobile': '?0',
     'sec-ch-ua-platform': '"macOS"',
-    'cookie': '########CHANGE_THE_COOKIE######',
+    'Cookie': '########CHANGE_THE_COOKIE######',
 }
 ZHIMG_HEADER = {
     'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',

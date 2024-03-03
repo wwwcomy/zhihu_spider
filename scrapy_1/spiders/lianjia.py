@@ -15,7 +15,6 @@ FOLDER = '/Users/xingnliu/tmp1/lianjia/'
 
 class LianjiaSpider(scrapy.Spider):
     name = "lianjia"
-    allowed_domains = ["sh.lianjia.com"]
     start_urls = ["https://sh.lianjia.com/ershoufang/minhang/co32/"]
 
     sub_district_set = set()
