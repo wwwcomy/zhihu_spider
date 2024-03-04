@@ -1,15 +1,9 @@
 import scrapy
-from scrapy_1.constants import LIANJIA_CHENGJIAO_HEADER
 from bs4 import BeautifulSoup
-from scrapy_1.models.model import CrawlSummary
-from datetime import datetime
-from scrapy_1.dao.sqlite_dao import SqliteCrawSummaryDao, SqliteHouseInfoDao, HousePriceChangeHistoryDao
-from scrapy_1.models.model import HouseInfo
 from scrapy import signals
 from http.cookies import SimpleCookie
 import json
 from pydispatch import dispatcher
-import re
 
 
 FOLDER = '/Users/xingnliu/tmp1/lianjia/'
