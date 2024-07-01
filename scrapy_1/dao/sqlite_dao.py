@@ -29,13 +29,13 @@ class SqliteHouseInfoDao:
     def save_house_info(self, house_info):
         conn = self.get_conn()
         c = conn.cursor()
-        c.execute('''CREATE TABLE IF NOT EXISTS house_info
-                    (id INTEGER PRIMARY KEY AUTOINCREMENT,house_id text, district text, sub_district text,
-                    title text, position_id text, position_info text, 
-                    house_info text, house_type text, house_area text, house_direction text, 
-                    house_decoration text, house_floor text, house_year text, total_price text, unit_price text,
-                    last_update_date text)
-                ''')
+        # c.execute('''CREATE TABLE IF NOT EXISTS house_info
+        #             (id INTEGER PRIMARY KEY AUTOINCREMENT,house_id text, district text, sub_district text,
+        #             title text, position_id text, position_info text, 
+        #             house_info text, house_type text, house_area text, house_direction text, 
+        #             house_decoration text, house_floor text, house_year text, total_price text, unit_price text,
+        #             last_update_date text)
+        #         ''')
         c.execute('''INSERT INTO house_info 
                   (house_id, district, sub_district, title, position_id,
                   position_info, house_info, house_type, house_area, house_direction,
@@ -84,20 +84,29 @@ class SqliteHouseInfoDao:
     def update_house_price(self, house_info, last_update_date):
         conn = self.get_conn()
         c = conn.cursor()
-        c.execute('''UPDATE house_info SET total_price = ?, unit_price = ?, last_update_date = ? WHERE house_id = ?''',
-                  (house_info.total_price, house_info.unit_price, last_update_date, house_info.house_id))
-        conn.commit()
-        conn.close()
+        try:
+            c.execute('''UPDATE house_info SET total_price = ?, unit_price = ?, last_update_date = ? WHERE house_id = ?''',
+                    (house_info.total_price, house_info.unit_price, last_update_date, house_info.house_id))
+            print(f"update_house_price count: {c.rowcount}, house_id: {house_info.house_id}")
+            conn.commit()
+        except Exception as e:
+            print(f"update_house_price error: {e}")
+        finally:
+            conn.close()
 
     def update_last_update_date(self, house_info, last_update_date):
         conn = self.get_conn()
         c = conn.cursor()
-        c.execute('''UPDATE house_info SET last_update_date = ? WHERE house_id = ?''',
-                  (last_update_date, house_info.house_id))
-        conn.commit()
-        conn.close()
+        try:
+            c.execute('''UPDATE house_info SET last_update_date = ? WHERE house_id = ?''',
+                    (last_update_date, house_info.house_id))
+            print(f"update_last_update_date count: {c.rowcount}, house_id: {house_info.house_id}")
+            conn.commit()
+        except Exception as e:
+            print(f"update_last_update_date error: {e}")
+        finally:
+            conn.close()
 
-    
     def get_conn(self):
         conn = sqlite3.connect('data.db')
         return conn
