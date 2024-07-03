@@ -1,6 +1,7 @@
 import sqlite3
 from scrapy_1.models.model import CrawlSummary
 from scrapy_1.models.model import HouseInfo
+from utils.utils import append_to_file
 
 class SqliteCrawSummaryDao:
     def save_craw_summary(self, crawl_summary: CrawlSummary):
@@ -87,10 +88,10 @@ class SqliteHouseInfoDao:
         try:
             c.execute('''UPDATE house_info SET total_price = ?, unit_price = ?, last_update_date = ? WHERE house_id = ?''',
                     (house_info.total_price, house_info.unit_price, last_update_date, house_info.house_id))
-            print(f"update_house_price count: {c.rowcount}, house_id: {house_info.house_id}")
+            append_to_file('update_house_price.log', f"update_house_price count: {c.rowcount}, house_id: {house_info.house_id}")
             conn.commit()
         except Exception as e:
-            print(f"update_house_price error: {e}")
+            append_to_file('update_house_price.log', f"update_house_price error: {e}")
         finally:
             conn.close()
 
